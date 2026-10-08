@@ -28,18 +28,45 @@ int main() {
     more->print();
 
     // ---- Part 2: your Uno scene goes below ----
-    std::cout << std::endl << "== Uno Turn Order ==" << std::endl;
+        std::cout << std::endl << "== Uno Turn Order ==" << std::endl;
 
     std::unique_ptr<List<Player>> tableOne = makeList<Player>();
 
+    Player* alex = new Player(1, "Alex");
+    Player* bella = new Player(2, "Bella");
+    Player* carlos = new Player(3, "Carlos");
+
+    alex->addCard(new Card("Red", "5"));
+    alex->addCard(new Card("Blue", "Skip"));
+
+    bella->addCard(new Card("Green", "2"));
+    bella->addCard(new Card("Blue", "7"));
+
+    carlos->addCard(new Card("Red", "4"));
+    carlos->addCard(new Card("Yellow", "Reverse"));
+
     std::cout << "Players join the first table:" << std::endl;
-    tableOne->addFront(new Player(3, "Carlos"));
-    tableOne->addFront(new Player(2, "Bella"));
-    tableOne->addFront(new Player(1, "Alex"));
+    tableOne->addFront(carlos);
+    tableOne->addFront(bella);
+    tableOne->addFront(alex);
     tableOne->print();
 
+    std::cout << "Alex's starting hand:" << std::endl;
+    alex->printHand();
+
+    Card* playedCard = alex->playCard();
+    std::cout << "Alex plays: " << *playedCard << std::endl;
+    delete playedCard;
+
+    std::cout << "Alex's hand after playing:" << std::endl;
+    alex->printHand();
+
+    Player* diana = new Player(4, "Diana");
+    diana->addCard(new Card("Yellow", "3"));
+    diana->addCard(new Card("Green", "Draw Two"));
+
     std::cout << "Diana joins in the middle:" << std::endl;
-    tableOne->addAnywhere(1, new Player(4, "Diana"));
+    tableOne->addAnywhere(1, diana);
     tableOne->print();
 
     std::cout << "Turn order before Reverse:" << std::endl;
@@ -54,8 +81,18 @@ int main() {
     tableOne->print();
 
     std::unique_ptr<List<Player>> tableTwo = makeList<Player>();
-    tableTwo->addFront(new Player(6, "Frank"));
-    tableTwo->addFront(new Player(5, "Eva"));
+
+    Player* eva = new Player(5, "Eva");
+    Player* frank = new Player(6, "Frank");
+
+    eva->addCard(new Card("Red", "9"));
+    eva->addCard(new Card("Yellow", "1"));
+
+    frank->addCard(new Card("Blue", "4"));
+    frank->addCard(new Card("Green", "6"));
+
+    tableTwo->addFront(frank);
+    tableTwo->addFront(eva);
 
     std::cout << "First table before the merge:" << std::endl;
     tableOne->print();
@@ -70,7 +107,6 @@ int main() {
 
     std::cout << "Second table after the merge:" << std::endl;
     tableTwo->print();
-
 
     return 0;
 }
