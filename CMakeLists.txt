@@ -11,5 +11,8 @@ add_executable(CS210_PA1_Uno_Turn_Order
         Player.h
         Stack.h
         List.h
+        ArrayList.h
+        LinkedList.h
+        Card.h
 
 )
