@@ -17,8 +17,8 @@ public:
     virtual void concat(List<T>* other) = 0;
 };
 
-#include "ArrayList.h"
-#include "LinkedList.h"
+#include <ArrayList.h>
+#include <LinkedList.h>
 
 template <typename T>
 std::unique_ptr<List<T>> makeList() {
